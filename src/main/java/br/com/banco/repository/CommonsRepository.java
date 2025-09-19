@@ -1,6 +1,6 @@
 package br.com.banco.repository;
 
-import br.com.banco.exception.NoFoundsEnoughException;
+import br.com.banco.exception.NoFundsEnoughException;
 import br.com.banco.model.Money;
 import br.com.banco.model.MoneyAudit;
 import br.com.banco.model.Wallet;
@@ -19,7 +19,7 @@ public class CommonsRepository {
 
     public static void checkFundsForTransaction(final Wallet source, final long amount){
         if(source.getFunds() < amount){
-            throw new NoFoundsEnoughException("Saldo insuficiente para essa transação");
+            throw new NoFundsEnoughException("Saldo insuficiente para essa transação");
         }
     }
 

@@ -14,7 +14,7 @@ import java.util.List;
 
 import static br.com.banco.repository.CommonsRepository.checkFundsForTransaction;
 
-public class investmentRepository {
+public class InvestmentRepository {
 
     private final List<Investment> investments = new ArrayList<>();
     private final List<InvestmentWallet> wallets = new ArrayList<>();
@@ -32,7 +32,6 @@ public class investmentRepository {
         if(accountsInUse.contains(account)){
             throw new AccountWithInvestmentException("A conta '" + account + "' já possui um invesstimento");
         }
-
         var investment = findById(id);
         checkFundsForTransaction(account, investment.initialFunds());
         var wallet = new InvestmentWallet(investment, account, investment.initialFunds());
@@ -56,8 +55,8 @@ public class investmentRepository {
         return wallet;
     }
 
-    public void updateAmount(final long percent){
-        wallets.forEach(w -> w.updateAmount(percent));
+    public void updateAmount(){
+        wallets.forEach(w -> w.updateAmount(w.getInvestment().tax()));
     }
 
     public Investment findById(final long id){
