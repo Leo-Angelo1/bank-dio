@@ -27,7 +27,7 @@ public abstract class Wallet {
          return Stream.generate(() -> new Money(history)).limit(amount).toList();
     }
 
-    public long getFounds(){
+    public long getFunds(){
         return money.size();
     }
 

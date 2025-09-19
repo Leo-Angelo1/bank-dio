@@ -8,12 +8,10 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-import static br.com.banco.
-
-@ToString
-@Getter
 import static br.com.banco.model.BankService.INVESTMENT;
 
+@Getter
+@ToString
 public class InvestmentWallet extends Wallet{
 
     private final Investment investment;
@@ -28,7 +26,7 @@ public class InvestmentWallet extends Wallet{
     }
 
     public void updateAmount(final long percent){
-        var amount = getFounds() * percent / 100;
+        var amount = getFunds() * percent / 100;
         var history = new MoneyAudit(UUID.randomUUID(), getService(), "rendimento", OffsetDateTime.now());
         var money = Stream.generate(() -> new Money(history)).limit(amount).toList();
         this.money.addAll(money);

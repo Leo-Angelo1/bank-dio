@@ -1,9 +1,9 @@
 package br.com.banco.repository;
 
 import br.com.banco.exception.NoFoundsEnoughException;
-import br.com.banco.model.AccountWallet;
 import br.com.banco.model.Money;
 import br.com.banco.model.MoneyAudit;
+import br.com.banco.model.Wallet;
 import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
@@ -17,8 +17,8 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor(access = PRIVATE)
 public class CommonsRepository {
 
-    public static void checkFoundsForTransaction(final AccountWallet source, final long amount){
-        if(source.getFounds() < amount){
+    public static void checkFundsForTransaction(final Wallet source, final long amount){
+        if(source.getFunds() < amount){
             throw new NoFoundsEnoughException("Saldo insuficiente para essa transação");
         }
     }
